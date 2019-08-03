@@ -16,14 +16,14 @@
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="https://datosdota.herokuapp.com/">Dota React</a>
+        <a class="navbar-brand" href="https://dotareact.herokuapp.com/">Dota React</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="https://datosdota.herokuapp.com/"><i class="fas fa-power-off"></i> Inicio</a>
+              <a class="nav-link" href="https://dotareact.herokuapp.com/"><i class="fas fa-power-off"></i> Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><i class="fas fa-user-tie"></i> Acerca de</a>
@@ -194,7 +194,7 @@
        console.log(params.name);
        axios.post('/create',params)
        .then((response) => {
-         console.log(response.data);
+          alert('Tu id es incorrecto o no activaste el boton de compartir estadisticas.');
        });
 
        this.user = {id:'',name:'',telefono:'',email:'',sugerencia:''};  

@@ -21,14 +21,14 @@ router.get('/', (req,res) => {
 
 router.get('/demo', (req,res) => {
 
-  let query = req.query.queryStr;
-  let url = 'https://api.opendota.com/api/players/199031117';
+  let url = 'https://api.opendota.com/api/players/19';
 
   axios({
       method:'get',
       url
   })
   .then(function (response) {
+      console.log('beni: '+ response.data.tracked_until);
       res.send(JSON.stringify(response.data));
   })
   .catch(function (error) {
@@ -45,14 +45,37 @@ router.post('/create', (req,res) => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("test");
-    var myobj = {id: req.body.id, name: req.body.name, email: req.body.email, telefono: req.body.telefono, sugerencia: req.body.sugerencia};
-    dbo.collection("users").insertOne(myobj, function(err, res) {
+    
+    let url = "https://api.opendota.com/api/players/"+ req.body.id;
+
+    axios({
+      method:'get',
+      url
+  })
+  .then(function (response) {
+    console.log('beni: '+ JSON.stringify(response.data));
+    if(response.data.tracked_until !== null){
+      var myobj = {id: req.body.id, name: req.body.name, email: req.body.email, telefono: req.body.telefono, sugerencia: req.body.sugerencia};
+     dbo.collection("users").insertOne(myobj, function(err, res) {
       if (err) throw err;
       console.log("1 document inserted");
       db.close();
     });
 
+    } else {
+      console.log("no te puedes resgistrasdsfr");
+      res.send('no te puedes registrar.');
+      }
+  })
+  .catch(function (error) {
+      console.log(error);
+
+  });
+
+
+
 });
+
 });
 
 
