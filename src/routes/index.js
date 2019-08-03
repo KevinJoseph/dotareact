@@ -58,7 +58,7 @@ router.post('/create', (req,res) => {
       var myobj = {id: req.body.id, name: req.body.name, email: req.body.email, telefono: req.body.telefono, sugerencia: req.body.sugerencia};
      dbo.collection("users").insertOne(myobj, function(err, res) {
       if (err) throw err;
-      console.log("1 document inserted");
+      console.log("1 document inser");
       db.close();
     });
 
