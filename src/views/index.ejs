@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>DotaReact</title>
+
+  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/43cfb2be8b.js"></script>
+</head>
+
+<body>
+  <!--navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="https://datosdota.herokuapp.com/">Dota React</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://datosdota.herokuapp.com/"><i class="fas fa-power-off"></i> Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-user-tie"></i> Acerca de</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-people-carry"></i> Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-phone-square-alt"></i> Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <!--bienvenida-->
+  <div class="container">
+    <div class="jumbotron text-center" id="bienvenida">
+     <h1>Bienvenido, registrate para iniciar!</h1>
+     <p>Obtenemos datos de tus partidas para organizar torneos, ver tu desempeño y puedas ganar premios... <i class="fas fa-chart-line"></i></p>
+     <a href="https://datosdota.herokuapp.com/register" class="btn btn-success my-2">Registrarse</a>
+   </div>  
+ </div>    
+ <!--tabla player-->
+ <div class="container" id="app">
+  <div class="table-responsive">
+   <table class="table">
+    <thead id="tabla-head">
+      <tr>
+        <th>Nº</th>
+        <th>USER</th>
+        <th>ID_JUGADOR</th>
+        <th>AVATAR</th>
+        <th>RANK TIER</th>
+        <th>MMR</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-body">
+      <tr v-for="(player, index) in players" v-bind:key="index">
+        <td>{{index}}</td>
+        <td>{{player.data.profile.personaname}}</td>
+        <td>{{player.data.profile.account_id}}</td>
+        <td><img :src="player.data.profile.avatar" ></td>
+        <td>{{player.data.rank_tier}}</td>
+        <td>{{player.data.mmr_estimate.estimate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-responsive">
+  <table class="table">
+   <thead id="tabla-head">
+     <tr>
+       <th>Nº</th>
+       <th>ID_MATCH</th>
+       <th>WIN</th>
+       <th>KILLS</th>
+       <th>DEATHS</th>
+       <th>ASIST</th>
+       <th>EXP_MIN</th>
+       <th>ORO_MIN</th>
+     </tr>
+   </thead>
+   <tbody id="tabla-body">
+     <tr v-for="(match, index) in matchs" v-bind:key="index">
+       <td>{{index}}</td>
+       <td>{{match.data[0].match_id}}</td>
+       <td>
+
+        <span v-if="match.data[0].radiant_win">
+          RADIANT
+        </span>
+        <span v-else>
+          DIRE
+        </span>
+      </td>
+      <td>{{match.data[0].kills}}</td>
+      <td>{{match.data[0].deaths}}</td>
+      <td>{{match.data[0].assists}}</td>
+      <td>{{match.data[0].xp_per_min}}</td>
+      <td>{{match.data[0].gold_per_min}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="footer text-center">
+  <div class="container">
+    <div class="row">
+
+      <!-- Footer Location -->
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <br>
+        <br>
+        <h5 class="text-uppercase mb-4">Ubicación</h5>
+        <p class="lead mb-0">Lima - Perú</p>
+      </div>
+
+      <!-- Footer Social Icons -->
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <br>
+        <br>
+
+        <h5 class="text-uppercase mb-4">Redes Sociales</h5>
+        <a class="btn btn-outline-light btn-social mx-1" id="fb" href="https://www.facebook.com/balh.23">
+          <i class="fab fa-fw fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-outline-light btn-social mx-1" id="tw" href="https://twitter.com/Beni_Luyo23">
+          <i class="fab fa-fw fa-twitter"></i>
+        </a>
+        <a class="btn btn-outline-light btn-social mx-1" id="lk" href="https://www.linkedin.com/in/beni-alexis-luyo-huam%C3%A1n-882b46166/">
+          <i class="fab fa-fw fa-linkedin-in"></i>
+        </a>
+        <a class="btn btn-outline-light btn-social mx-1" id="ig" href="https://www.instagram.com/balh_2303/?hl=es-la">
+          <i class="fab fa-fw fa-instagram"></i>
+        </a>
+        <a class="btn btn-outline-light btn-social mx-1" id="st" href="https://steamcommunity.com/profiles/76561198159296845/">
+          <i class="fab fa-fw fa-steam"></i>
+        </a>
+      </div>
+
+      <!-- Footer About Text -->
+      <div class="col-lg-4">
+        <br>
+        <br>
+        <h5 class="text-uppercase mb-4">Desarrollo de app's web</h5>
+        <p class="lead mb-0">Buscamos desarrolladores</p>
+
+
+        <!-- Footer About Text -->
+        <div class="col-lg-4">
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</footer>
+
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+  <div class="container">
+    <small>Copyright &copy; DotaReact - 2019</small>
+  </div>
+</section>
+
+<!--script-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data (){
+     return {
+      players:[],
+      player:{id:'',tracked_until:'',personaname:'',avatar:''},
+      id:'',
+      users:[],
+      matchs:[],
+      match:{gold_per_min:''},
+      user:{id:''},
+    } 
+  },
+  mounted(){
+    axios.get('/todo')
+    .then((response) => {
+          //this.players.push(response.data);
+         // console.log(response.data[0]);
+         //console.log(response.data); 
+         this.players = response.data;
+       }),
+    axios.get('/recentMatch')
+    .then((response) => {
+          //this.players.push(response.data);
+         // console.log(response.data[0]);
+         //console.log(response.data); 
+         this.matchs = response.data;
+         console.log(this.matchs);
+       });
+      //console.log(this.players);
+    },
+    methods:{
+
+    }
+  });
+</script>
+</body>
+</html>

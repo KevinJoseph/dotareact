@@ -1,0 +1,83 @@
+body {
+    background-image: url('../img/dark-paths.png');
+}
+
+.navbar {
+	background-color: black;
+	color: white;
+}
+
+#bienvenida{
+    background-color: #23527c;
+    color: white;
+}
+
+.table td, .table th {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+#tabla-head{
+    background-color: #23527c;
+    color: white;
+}
+
+#tabla-body{
+    background-color: white;
+    color: black;
+}
+
+.footer {
+	background-color: #212529;
+	color: white;
+}
+
+.copyright {
+	background-color: black;
+	color: white;
+}
+
+#formulario {
+    background-color: #23527c;
+    color: white;
+}
+
+#fb{
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#tw{
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#lk{
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#ig{
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#st{
+    border-radius: 20px;
+    background-color: black;
+    border: none;
+}
+
+#img1 {
+    height: 100%;
+    width: 100%;
+}
+
+#img2 {
+    height: 100%;
+    width: 100%;
+}
