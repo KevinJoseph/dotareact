@@ -1,183 +1,202 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>--DotaReact-></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>DotaReact</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700"> 
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
   <script src="https://kit.fontawesome.com/43cfb2be8b.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
 </head>
-
 <body>
-  <!--navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <img id="logo" src="../img/logo.jpeg">
-      <a class="navbar-brand" href="https://dotareact.herokuapp.com/">&ensp;&ensp;DotaReact</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="https://dotareact.herokuapp.com/"><i class="fas fa-power-off"></i> Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-user-tie"></i> Acerca de</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-people-carry"></i> Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-phone-square-alt"></i> Contacto</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <br>
-  <!--bienvenida-->
-  <div class="container text-center">
-      <img id="banner" src="../img/banner.jpeg">
-  </div>
-  <br>
-  <div class="container">
-    <div class="jumbotron text-center" id="bienvenida">
-     <h1>Bienvenido, registrate para iniciar!</h1>
-     <p>Obtenemos datos de tus partidas para organizar torneos, ver tu desempeño y puedas ganar premios... <i class="fas fa-chart-line"></i></p>
-     <a href="https://dotareact.herokuapp.com/register" class="btn btn-success my-2">Registrarse</a>
-   </div>  
- </div>    
- <!--tabla player-->
- <div class="container" id="app">
-  <div class="table-responsive">
-   <table class="table">
-    <thead id="tabla-head">
-      <tr>
-        <th>Nº</th>
-        <th>USER</th>
-        <th>ID_JUGADOR</th>
-        <th>AVATAR</th>
-        <th>RANK TIER</th>
-        <th>MMR</th>
-      </tr>
-    </thead>
-    <tbody id="tabla-body">
-      <tr v-for="(player, index) in players" v-bind:key="index">
-        <td>{{index}}</td>
-        <td>{{player.data.profile.personaname}}</td>
-        <td>{{player.data.profile.account_id}}</td>
-        <td><img :src="player.data.profile.avatar" ></td>
-        <td>{{player.data.rank_tier}}</td>
-        <td>{{player.data.mmr_estimate.estimate}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="table-responsive">
-  <table class="table">
-   <thead id="tabla-head">
-     <tr>
-       <th>Nº</th>
-       <th>ID_MATCH</th>
-       <th>WIN</th>
-       <th>KILLS</th>
-       <th>DEATHS</th>
-       <th>ASIST</th>
-       <th>EXP_MIN</th>
-       <th>ORO_MIN</th>
-     </tr>
-   </thead>
-   <tbody id="tabla-body">
-     <tr v-for="(match, index) in matchs" v-bind:key="index">
-       <td>{{index}}</td>
-       <td>{{match.data[0].match_id}}</td>
-       <td>
 
-        <span v-if="match.data[0].radiant_win">
-          RADIANT
-        </span>
-        <span v-else>
-          DIRE
-        </span>
-      </td>
-      <td>{{match.data[0].kills}}</td>
-      <td>{{match.data[0].deaths}}</td>
-      <td>{{match.data[0].assists}}</td>
-      <td>{{match.data[0].xp_per_min}}</td>
-      <td>{{match.data[0].gold_per_min}}</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-<br>
+  <div class="site-wrap">
 
-<!-- Footer -->
-<footer class="footer text-center">
-  <div class="container">
-    <div class="row">
-
-      <!-- Footer Location -->
-      <div class="col-lg-4 mb-5 mb-lg-0">
-        <br>
-        <h5 class="text-uppercase mb-4">Ubicación</h5>
-        <p class="lead mb-0">Lima - Perú</p>
-      </div>
-
-      <!-- Footer Social Icons -->
-      <div class="col-lg-4 mb-5 mb-lg-0">
-        <br>
-        <h5 class="text-uppercase mb-4">Redes Sociales</h5>
-        <a class="btn btn-outline-light btn-social mx-1" id="fb" href="https://www.facebook.com/dotareact/">
-          <i class="fab fa-fw fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-outline-light btn-social mx-1" id="lk" href="https://www.linkedin.com/in/beni-alexis-luyo-huam%C3%A1n-882b46166/">
-          <i class="fab fa-fw fa-linkedin-in"></i>
-        </a>
-        <a class="btn btn-outline-light btn-social mx-1" id="ig" href="#">
-          <i class="fab fa-fw fa-instagram"></i>
-        </a>
-        <a class="btn btn-outline-light btn-social mx-1" id="st" href="https://steamcommunity.com/profiles/76561198159296845/">
-          <i class="fab fa-fw fa-steam"></i>
-        </a>
-      </div>
-
-      <!-- Footer About Text -->
-      <div class="col-lg-4">
-        <br>
-        <h5 class="text-uppercase mb-4">Desarrollo de app's web</h5>
-        <p class="lead mb-0">Buscamos desarrolladores</p>
-
-
-        <!-- Footer About Text -->
-        <div class="col-lg-4">
-          <br>
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
         </div>
       </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <header class="site-navbar py-3" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-11 col-xl-2">
+            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">DotaReact</a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li class="active"><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+  
+
+  <div class="site-blocks-cover overlay" style="background-image: url(images/lycan.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+
+        <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+
+          <h1 class="text-white font-weight-light mb-5 font-weight-bold">Bienvenido, registrate para iniciar!</h1>
+          <p class="text-white font-weight-light mb-5 font-weight-bold">Obtenemos datos de tus partidas para organizar torneos, ver tu desempeño y puedas ganar premios... <i class="fas fa-chart-line"></i></p></p>
+          <br>
+          <a href="https://dotareact.herokuapp.com/register" class="btn btn-primary py-3 px-5 text-white">Registrarse</a>
+
+        </div>
+      </div>
+    </div>
+  </div>  
+
+
+  <div class="site-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="mb-0 text-primary">Tabla de Usuarios</h2>
+          <p class="color-black-opacity-5">Ubica tu posición</p>
+        </div>
+      </div>
+
+      <div class="container" id="app">
+        <div class="table-responsive">
+         <table class="table">
+          <thead id="tabla-head">
+            <tr>
+              <th>Nº</th>
+              <th>USER</th>
+              <th>ID_JUGADOR</th>
+              <th>AVATAR</th>
+              <th>RANK TIER</th>
+              <th>MMR</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <tr v-for="(player, index) in players" v-bind:key="index">
+              <td>{{index}}</td>
+              <td>{{player.data.profile.personaname}}</td>
+              <td>{{player.data.profile.account_id}}</td>
+              <td><img :src="player.data.profile.avatar" ></td>
+              <td>{{player.data.rank_tier}}</td>
+              <td>{{player.data.mmr_estimate.estimate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="mb-0 text-primary">Tabla de Partidas</h2>
+          <p class="color-black-opacity-5">Ubica tu posición</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table">
+         <thead id="tabla-head">
+           <tr>
+             <th>Nº</th>
+             <th>ID_MATCH</th>
+             <th>WIN</th>
+             <th>KILLS</th>
+             <th>DEATHS</th>
+             <th>ASIST</th>
+             <th>EXP_MIN</th>
+             <th>ORO_MIN</th>
+           </tr>
+         </thead>
+         <tbody id="tabla-body">
+           <tr v-for="(match, index) in matchs" v-bind:key="index">
+             <td>{{index}}</td>
+             <td>{{match.data[0].match_id}}</td>
+             <td>
+
+              <span v-if="match.data[0].radiant_win">
+                RADIANT
+              </span>
+              <span v-else>
+                DIRE
+              </span>
+            </td>
+            <td>{{match.data[0].kills}}</td>
+            <td>{{match.data[0].deaths}}</td>
+            <td>{{match.data[0].assists}}</td>
+            <td>{{match.data[0].xp_per_min}}</td>
+            <td>{{match.data[0].gold_per_min}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="row text-center">
+    <div class="col-md-12">
+          <p>Copyright &copy; DotaReact | 2019</p>
     </div>
   </div>
 </footer>
 
-<!-- Copyright Section -->
-<section class="copyright py-4 text-center text-white">
-  <div class="container">
-    <small>Copyright &copy; DotaReact - 2019</small>
-  </div>
-</section>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/aos.js"></script>
 
-<!--script-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script>
   new Vue({
     el: '#app',
@@ -215,5 +234,6 @@
     }
   });
 </script>
+
 </body>
 </html>
