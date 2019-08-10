@@ -81,3 +81,13 @@ body {
     height: 100%;
     width: 100%;
 }
+
+#logo {
+    height: 3.5em;
+    width: 3.5em;
+}
+
+#banner {
+    height: 50%;
+    width: 50%;
+}
