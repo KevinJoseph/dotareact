@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>--DotaReact-></title>
+  <title>|--DotaReact-></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -95,13 +95,16 @@
       </div>
 
       <div class="container" id="app">
-        <div class="table-responsive">
+        <div class="row">
+
+        
+        <div class="table-responsive  col-sm-10">
          <table class="table">
           <thead id="tabla-head">
             <tr>
               <th>Nº</th>
               <th>USER</th>
-              <th>ID_JUGADOR</th>
+              <th>ID</th>
               <th>AVATAR</th>
               <th>RANK TIER</th>
               <th>MMR</th>
@@ -116,9 +119,28 @@
               <td>{{player.data.rank_tier}}</td>
               <td>{{player.data.mmr_estimate.estimate}}</td>
             </tr>
+    
           </tbody>
         </table>
       </div>
+
+      <div class="table-responsive col-sm-2">
+        <table class="table">
+          <thead id="tabla-head">
+            <tr>
+              <th>WIN</th>
+              <th>LOSE</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <tr style="font-size: 19px;" v-for="(gano, index) in wins" v-bind:key="index">
+              <td >{{gano.data.win}}</td>
+              <td >{{gano.data.lose}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
       <br>
 
       <div class="row justify-content-center mb-5">
@@ -163,6 +185,7 @@
           </tr>
         </tbody>
       </table>
+
     </div>
   </div>
   <br>
@@ -225,8 +248,10 @@
       id:'',
       users:[],
       matchs:[],
+      wins:[],
       match:{gold_per_min:''},
       user:{id:''},
+      gano:{win:'',lose:''},
     } 
   },
   mounted(){
@@ -243,7 +268,15 @@
          // console.log(response.data[0]);
          //console.log(response.data); 
          this.matchs = response.data;
-         console.log(this.matchs);
+         //console.log(this.matchs);
+       }),    
+    axios.get('/wl')
+    .then((response) => {
+          //this.players.push(response.data);
+         // console.log(response.data[0]);
+        // console.log(response.data); 
+         this.wins = response.data;
+         console.log(this.wins[0].data.win);
        });
       //console.log(this.players);
     },

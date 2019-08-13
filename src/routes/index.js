@@ -188,4 +188,58 @@ router.get('/recentMatch', (req, res) => {
 });
 
 });
+
+router.get('/wl', (req, res) => {
+
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://root:qwerty2019@dbnodernak-pyzkd.mongodb.net/test?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  var mySet = new Set();
+  var a = [];
+  MongoClient.connect(uri, function(err, client) {
+    if(err) {
+         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+    }
+    console.log('Connected...');
+    const collection = client.db("test").collection("users");
+    collection.find({}).toArray(function (err, results) {
+      if (err) {
+        console.log(err)
+        res.send([])
+        return
+      } 
+     // console.log(results.id);
+      //console.log(results[item].id);
+      const apiarray=[];
+
+      for (item in results) {
+        apiarray[item] = "https://api.opendota.com/api/players/"+results[item].id+"/wl";
+      }
+      const arraypromesas = [];
+      var i =0;
+      apiarray.forEach(function(element) {
+        console.log(element);
+        arraypromesas[i] = axios.get(element+"");
+        i++;
+      });
+
+      Promise.all([
+        Promise.all(arraypromesas),
+    ])
+    .then((values) => {
+      var prevjson =CircularJSON.stringify(values);
+      var array = JSON.parse(prevjson);
+      //Object.assign({}, array);
+      
+    
+
+      res.send(array[0]);
+
+    });
+    });
+    client.close();
+
+});
+
+});
 module.exports = router;
