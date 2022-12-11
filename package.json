@@ -16,7 +16,7 @@
     "circular-json": "^0.5.9",
     "cors": "^2.8.5",
     "ejs-mate": "^3.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "moment": "^2.24.0",
     "mongoose": "^5.6.4",
     "node-fetch": "^2.6.0",
